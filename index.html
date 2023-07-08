@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Cardápio Digital - Barriga Cheia</title>
+  <style>
+    body {
+      background-color: #000;
+      color: yellow;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    #restaurant-logo {
+      width: 80px;
+      height: 80px;
+      margin-right: 20px;
+    }
+
+    #restaurant-name {
+      font-size: 36px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+      animation: neon-effect 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes neon-effect {
+      from { text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); }
+      to { text-shadow: -2px -2px 4px rgba(255, 0, 0, 0.8), 2px 2px 4px rgba(0, 255, 0, 0.8), 0 0 10px rgba(0, 255, 0, 0.8); }
+    }
+
+    .menu-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    .menu-item {
+      width: calc(33.33% - 20px);
+      margin-bottom: 20px;
+      background-color: #333;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: auto;
+    }
+
+    .menu-item-details {
+      padding: 10px;
+    }
+
+    .menu-item-details h3 {
+      font-size: 18px;
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+
+    .menu-item-details p {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img id="restaurant-logo" src="imagens/barriguinha.jpg" alt="Logo do Restaurante">
+    <h1 id="restaurant-name">Barriga Cheia</h1>
+  </header>
+
+  <div class="menu-container" id="menu-container"></div>
+
+  <script>
+    const menu = [
+      {
+         "id": 1,
+         "nome": "FEIJOADA",
+         "Preço": "R$59,90",
+         "foto": "iafeijoada.jpg"
+      },
+      {
+         "id": 2,
+         "nome": "Virada Paulista",
+         "Preço": "R$39,90",
+         "foto": "iavirada.jpg"
+      },
+      {
+         "id": 3,
+         "nome": "Canja",
+         "Preço": "R$12,90",
+         "foto": "iacanja.jpg"
+      },
+      {
+         "id": 4,
+         "nome": "Feijão Tropeiro",
+         "Preço": "R$59,90",
+         "foto": "iatropeiro.jpg"
+      },
+      {
+         "id": 5,
+         "nome": "Salada de ovo de codorna",
+         "Preço": "R$59,90",
+         "foto": "iacodorna.jpg"
+      },
+      {
+         "id": 6,
+         "nome": "Arroz de carreteiro",
+         "Preço": "R$59,90",
+         "foto": "iacarreteiro.jpg"
+      },
+      {
+         "id": 7,
+         "nome": "Churrasco de Picanha",
+         "Preço": "R$59,90",
+         "foto": "iapicanha.jpg"
+      },
+      {
+         "id": 8,
+         "nome": "Milho Assado",
+         "Preço": "R$9,90",
+         "foto": "iamilho.jpg"
+      },
+      {
+         "id": 9,
+         "nome": "Pamonha Com linguiça",
+         "Preço": "R$29,90",
+         "foto": "iapamonha.jpg"
+      },
+      {
+         "id": 10,
+         "nome": "Pamonha Doce",
+         "Preço": "R$59,90",
+         "foto": "iapamonhadoce.jpg"
+      }
+    ];
+
+    const menuContainer = document.getElementById('menu-container');
+
+    function createMenuItem(item) {
+      const menuItem = document.createElement('div');
+      menuItem.classList.add('menu-item');
+
+      const image = document.createElement('img');
+      image.src = 'imagens/' + item.foto;
+      menuItem.appendChild(image);
+
+      const details = document.createElement('div');
+      details.classList.add('menu-item-details');
+
+      const name = document.createElement('h3');
+      name.textContent = item.nome;
+      details.appendChild(name);
+
+      const price = document.createElement('p');
+      price.textContent = 'Preço: ' + item.Preço;
+      details.appendChild(price);
+
+      menuItem.appendChild(details);
+
+      return menuItem;
+    }
+
+    for (let i = 0; i < menu.length; i++) {
+      const menuItem = createMenuItem(menu[i]);
+      menuContainer.appendChild(menuItem);
+    }
+  </script>
+</body>
+</html>
